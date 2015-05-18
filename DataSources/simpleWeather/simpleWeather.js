@@ -41,8 +41,8 @@
 		// * **updateCallback** : A callback function that you'll call if and when your datasource has an update for freeboard to recalculate. This function expects a single parameter which is a javascript object with the new, updated data. You should hold on to this reference and call it when needed.
 		newInstance   : function(settings, newInstanceCallback, updateCallback)
 		{
-			// myDatasourcePlugin is defined below.
-			newInstanceCallback(new myDatasourcePlugin(settings, updateCallback));
+			// WeatherDatasourcePlugin is defined below.
+			newInstanceCallback(new WeatherDatasourcePlugin(settings, updateCallback));
 		}
 	});
 
@@ -51,7 +51,7 @@
 	//
 	// -------------------
 	// Here we implement the actual datasource plugin. We pass in the settings and updateCallback.
-	var myDatasourcePlugin = function(settings, updateCallback)
+	var WeatherDatasourcePlugin = function(settings, updateCallback)
 	{
 		// Always a good idea...
 		var self = this;
@@ -62,7 +62,9 @@
 		/* This is some function where I'll get my data from somewhere */
 		function getData()
 		{
-			function wf() {
+			var newData = { hello : "world! it's " + new Date().toLocaleTimeString() };
+			updateCallback(newData);
+			/*function wf() {
 				$.simpleWeather({
 					location: currentSettings.location,
 					unit: 'c',
@@ -73,8 +75,8 @@
 					  updateCallback(error);
 					}
 				});
-				wf();
-			}			  
+				wf();				
+			}*/			
 		}
 
 		// You'll probably want to implement some sort of timer to refresh your data every so often.
