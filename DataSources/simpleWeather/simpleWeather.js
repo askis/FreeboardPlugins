@@ -20,7 +20,7 @@
 				// **display_name** : The pretty name that will be shown to the user when they adjust this setting.
 				"display_name" : "Location",
 				// **type** (required) : The type of input expected for this setting. "text" will display a single text box input. Examples of other types will follow in this documentation.
-				"type"         : "json",
+				"type"         : "text",
 				// **default_value** : A default value for this setting.
 				"default_value": "Nuremberg, DE",
 				// **description** : Text that will be displayed below the setting to give the user any extra information.
@@ -64,7 +64,7 @@
 		function getData()
 		{
 			$.simpleWeather({
-				location: settings.location,
+				location: currentSettings.location,
 				unit: 'c',
 				success: function(weather) {
 					updateCallback(weather); 
