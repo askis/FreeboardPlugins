@@ -9,8 +9,7 @@
         "description" : "Get the Weather from a location example <strong>Nuremberg, DE</strong>",
 		// **external_scripts** : Any external scripts that should be loaded before the plugin instance is created.
 		"external_scripts" : [
-			"https://code.jquery.com/jquery-1.10.2.js",
-		    "https://raw.githubusercontent.com/askis/FreeboardPlugins/master/DataSources/simpleWeather/jquery.simpleWeather.min.js"
+			"https://raw.githubusercontent.com/askis/FreeboardPlugins/master/DataSources/simpleWeather/jquery.simpleWeather.min.js"		    
 		],
 		// **settings** : An array of settings that will be displayed for this plugin when the user adds it.
 		"settings"    : [
