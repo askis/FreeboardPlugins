@@ -62,16 +62,19 @@
 		/* This is some function where I'll get my data from somewhere */
 		function getData()
 		{
-			$.simpleWeather({
-				location: currentSettings.location,
-				unit: 'c',
-				success: function(weather) {
-					updateCallback(weather); 
-				},
-				error: function(error) {
-				  updateCallback(error);
-				}
-			  });					
+			function wf() {
+				$.simpleWeather({
+					location: currentSettings.location,
+					unit: 'c',
+					success: function(weather) {
+						updateCallback(weather); 
+					},
+					error: function(error) {
+					  updateCallback(error);
+					}
+				});
+				wf();
+			}			  
 		}
 
 		// You'll probably want to implement some sort of timer to refresh your data every so often.
