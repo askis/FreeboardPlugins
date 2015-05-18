@@ -9,8 +9,8 @@
         "description" : "Get the Weather from a location example <strong>Nuremberg, DE</strong>",
 		// **external_scripts** : Any external scripts that should be loaded before the plugin instance is created.
 		"external_scripts" : [
-			"http://mydomain.com/myscript1.js",
-		    "http://mydomain.com/myscript2.js"
+			"https://code.jquery.com/jquery-1.10.2.js",
+		    "https://raw.githubusercontent.com/askis/FreeboardPlugins/master/DataSources/simpleWeather/jquery.simpleWeather.min.js"
 		],
 		// **settings** : An array of settings that will be displayed for this plugin when the user adds it.
 		"settings"    : [
@@ -32,8 +32,8 @@
 				"name"         : "refresh_time",
 				"display_name" : "Refresh Time",
 				"type"         : "text",
-				"description"  : "In milliseconds",
-				"default_value": 5000
+				"description"  : "In seconds",
+				"default_value": 30
 			}
 		],
 		// **newInstance(settings, newInstanceCallback, updateCallback)** (required) : A function that will be called when a new instance of this plugin is requested.
@@ -63,13 +63,16 @@
 		/* This is some function where I'll get my data from somewhere */
 		function getData()
 		{
-			var newData = { hello : "world! it's " + new Date().toLocaleTimeString() }; // Just putting some sample data in for fun.
-
-			/* Get my data from somewhere and populate newData with it... Probably a JSON API or something. */
-			/* ... */
-
-			// I'm calling updateCallback to tell it I've got new data for it to munch on.
-			updateCallback(newData);
+			$.simpleWeather({
+				location: settings.location,
+				unit: 'c',
+				success: function(weather) {
+					updateCallback(weather); 
+				},
+				error: function(error) {
+				  updateCallback(error);
+				}
+			  });					
 		}
 
 		// You'll probably want to implement some sort of timer to refresh your data every so often.
@@ -86,7 +89,7 @@
 			{
 				// Here we call our getData function to update freeboard with new data.
 				getData();
-			}, interval);
+			}, interval*1000);
 		}
 
 		// **onSettingsChanged(newSettings)** (required) : A public function we must implement that will be called when a user makes a change to the settings.
