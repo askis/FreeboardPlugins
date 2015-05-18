@@ -9,6 +9,7 @@
         "description" : "Get the Weather from a location example <strong>Nuremberg, DE</strong>",
 		// **external_scripts** : Any external scripts that should be loaded before the plugin instance is created.
 		"external_scripts" : [
+		    "https://code.jquery.com/jquery-1.10.2.js",
 			"https://raw.githubusercontent.com/askis/FreeboardPlugins/master/DataSources/simpleWeather/jquery.simpleWeather.min.js"		    
 		],
 		// **settings** : An array of settings that will be displayed for this plugin when the user adds it.
@@ -62,9 +63,7 @@
 		/* This is some function where I'll get my data from somewhere */
 		function getData()
 		{
-			var newData = { hello : "world! it's " + new Date().toLocaleTimeString() };
-			updateCallback(newData);
-			/*function wf() {
+			function wf() {
 				$.simpleWeather({
 					location: currentSettings.location,
 					unit: 'c',
@@ -74,9 +73,9 @@
 					error: function(error) {
 					  updateCallback(error);
 					}
-				});
-				wf();				
-			}*/			
+				});				
+			}
+			wf();
 		}
 
 		// You'll probably want to implement some sort of timer to refresh your data every so often.
